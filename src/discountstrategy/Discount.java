@@ -11,4 +11,5 @@ package discountstrategy;
 public interface Discount {
     //applies discount to SaleAmounts or Product Unit Prices
      public abstract double reducePrice(double amountToDiscount, double discountRate);
+     
 }

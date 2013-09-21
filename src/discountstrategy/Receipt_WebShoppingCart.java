@@ -8,34 +8,21 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public class GenericLineItem implements LineItem{
-    
-    int productQty;
-    Product product;
+public class Receipt_WebShoppingCart implements Receipt{
 
     @Override
-    public String[] getLineItem() {
+    public void removeLineItem(LineItem lineItem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setLineItem(String product, int qty) {//delegate to Product to return a Product
+    public void addLineItem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setItemQuantity(int qty) {
+    public void printReceipt() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public int getItemQuantity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
-
-   
-    
     
 }

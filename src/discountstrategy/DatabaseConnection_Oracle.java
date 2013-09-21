@@ -8,6 +8,6 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public interface SaleDiscount extends Discount{
-   
+public class DatabaseConnection_Oracle {
+    
 }

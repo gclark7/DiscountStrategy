@@ -8,7 +8,7 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public class KohlsCash implements SaleDiscount{
+public class DiscountProduct_Clearance implements DiscountProduct{
 
     @Override
     public double reducePrice(double amountToDiscount, double discountRate) {

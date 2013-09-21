@@ -8,6 +8,6 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public class OracleDatabase {
+public class DatabaseConnection_FakeDb {
     
 }

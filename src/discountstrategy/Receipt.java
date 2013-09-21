@@ -13,6 +13,6 @@ public interface Receipt {
     
     public abstract void removeLineItem(LineItem lineItem);
     public abstract void addLineItem();
-    public abstract void writeReceipt();
+    public abstract void printReceipt();
     
 }

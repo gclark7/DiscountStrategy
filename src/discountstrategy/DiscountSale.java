@@ -8,13 +8,6 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public class WebCheckOut {//not sure what to use this for now...used shopping cart instead
-
-    
-    public WebCheckOut(){
-        
-    }
-    
-    
-    
+public interface DiscountSale extends Discount{
+   
 }

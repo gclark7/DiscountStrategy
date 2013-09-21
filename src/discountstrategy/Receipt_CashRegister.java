@@ -8,20 +8,20 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public class CashRegister implements PointOfSale{
-    
-    Receipt receipt;
-    public CashRegister(Receipt receipt){
-        this.receipt=receipt;
-    }
-    
+public class Receipt_CashRegister implements Receipt{
+
     @Override
-    public void startTransaction(String customerID) {
+    public void removeLineItem(LineItem lineItem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void addLineItem(String productID, int qty) {
+    public void addLineItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void printReceipt() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -10,10 +10,10 @@ package discountstrategy;
  */
 
 
-public class ShoppingCart implements PointOfSale{
+public class PointOfSale_WebShoppingCart implements PointOfSale{
     
      Receipt receipt;
-    public ShoppingCart(Receipt receipt){
+    public PointOfSale_WebShoppingCart(Receipt receipt){
         this.receipt=receipt;
     }
     
