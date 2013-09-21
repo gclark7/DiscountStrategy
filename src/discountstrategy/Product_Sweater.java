@@ -8,8 +8,9 @@ package discountstrategy;
  *
  * @author gcDataTechnology
  */
-public class Product_AnyProduct implements Product{
-    private String MSG_ERR_NULL="NULL";
+public class Product_Sweater implements Product{
+    
+     private String MSG_ERR_NULL="NULL";
     
     private DiscountProduct[] productDiscounts;
     private String[] productRecord;
@@ -17,7 +18,7 @@ public class Product_AnyProduct implements Product{
     private final String PRODUCT_TABLE="tableProducts";
     
     //constructor
-    public Product_AnyProduct(String productID, DatabaseConnection db){
+    public Product_Sweater(String productID, DatabaseConnection db){
         //null error handling to be built here
         this.db=db;
         productDiscounts=new DiscountProduct[0];

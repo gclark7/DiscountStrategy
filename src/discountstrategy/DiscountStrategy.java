@@ -30,8 +30,11 @@ public class DiscountStrategy {
         shoppingCart.addLineItem("product1", 2);
         shoppingCart.addLineItem("procuct2", 4);
         
+        //testing
+        DatabaseConnection db=new DatabaseConnection_FakeDb();
+        Product product=new Product_AnyProduct("product1",db);
         
-        
+       // product.lookUpProductRecordInDatabase("product1");
         
     }//close main
 }//close strategy
