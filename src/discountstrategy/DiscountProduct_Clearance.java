@@ -12,7 +12,7 @@ public class DiscountProduct_Clearance implements DiscountProduct{
 
     @Override
     public double reducePrice(double amountToDiscount, double discountRate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return amountToDiscount*discountRate;
     }
     
 }

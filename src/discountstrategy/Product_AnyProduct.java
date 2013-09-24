@@ -17,12 +17,13 @@ public class Product_AnyProduct implements Product{
     private final String PRODUCT_TABLE="tableProducts";
     
     //constructor
-    public Product_AnyProduct(String productID, DatabaseConnection db){
+    public Product_AnyProduct(String productID, DatabaseConnection db, DiscountProduct[] discount){
         //null error handling to be built here
         this.db=db;
         productDiscounts=new DiscountProduct[0];
         productRecord=new String[0];
         setProductRecord(lookUpProductRecordInDatabase(productID));
+        setProductDiscounts(discount);
     }
     
     @Override
@@ -31,7 +32,7 @@ public class Product_AnyProduct implements Product{
     }
 
     @Override
-    public void setProductDiscount(DiscountProduct discount) {
+    public void addAnotherProductDiscount(DiscountProduct discount) {
         if(discount == null){
             throw new UnsupportedOperationException(MSG_ERR_NULL + discount.getClass()); //To change body of generated methods, choose Tools | Templates.
         }else{
@@ -44,6 +45,18 @@ public class Product_AnyProduct implements Product{
         this.productDiscounts=temp;
         }
         
+        
+    }
+    
+    @Override
+    public void setProductDiscounts(DiscountProduct[] discount){
+        for(DiscountProduct d:discount){
+            if(d==null){
+                throw new UnsupportedOperationException(MSG_ERR_NULL + discount.getClass());
+            }
+        }
+        
+        productDiscounts=discount;
         
     }
 
@@ -76,6 +89,7 @@ public class Product_AnyProduct implements Product{
            return db.readData(PRODUCT_TABLE,productID);
        }
     }
+    
     
     
 }

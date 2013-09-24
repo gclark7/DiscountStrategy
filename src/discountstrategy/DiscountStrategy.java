@@ -21,18 +21,25 @@ public class DiscountStrategy {
         
         //user logs in or tries to place an item in the shopping cart and so is forced to log in
         Receipt receipt =new Receipt_WebShoppingCart();
-        PointOfSale shoppingCart = new PointOfSale_WebShoppingCart(receipt);//new WebCheckOut();
+        DatabaseConnection db = new DatabaseConnection_FakeDb();//also connects to db from constructor
+        
+        PointOfSale shoppingCart = new PointOfSale_WebShoppingCart(receipt,db);//new WebCheckOut();
+        DiscountProduct[]  discountProduct = new DiscountProduct[1];
+        discountProduct[0] = new DiscountProduct_Clearance();
         
         //start shopping
         shoppingCart.startTransaction("User00123");
         
         //would like to build the deviceInput / deviceOutput to handle this
-        shoppingCart.addLineItem("product1", 2);
-        shoppingCart.addLineItem("procuct2", 4);
+        shoppingCart.addLineItem("product1", 2, discountProduct);
+        shoppingCart.addLineItem("procuct2", 4, discountProduct);
         
         //testing
-        DatabaseConnection db=new DatabaseConnection_FakeDb();
-        Product product=new Product_AnyProduct("product1",db);
+        //Create a product :: Simulates the user's click on an item image to add to shoppingCart
+        
+        
+        //Product product=new Product_AnyProduct("product1",db, discountProduct);//Testing
+        
         
        // product.lookUpProductRecordInDatabase("product1");
         

@@ -11,7 +11,8 @@ package discountstrategy;
 public interface Product {
     
     public abstract DiscountProduct[] getProductDiscount();
-    public abstract void setProductDiscount(DiscountProduct discount);
+    public abstract void setProductDiscounts(DiscountProduct[] discount);
+    public abstract void addAnotherProductDiscount(DiscountProduct discount);
     public abstract String[] getProductRecord();//returns record stored in Product Object
     public abstract String[] lookUpProductRecordInDatabase(String productID);
     public abstract void setProductRecord(String[] recordDetails);//pulls from database

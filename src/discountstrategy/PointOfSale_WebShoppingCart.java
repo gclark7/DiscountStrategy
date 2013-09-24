@@ -13,9 +13,13 @@ package discountstrategy;
 public class PointOfSale_WebShoppingCart implements PointOfSale{
     private final String MSG_ERR_NULL="NULL Value";
      Receipt receipt;
+     DatabaseConnection db;
      
-    public PointOfSale_WebShoppingCart(Receipt receipt){
+     
+     
+    public PointOfSale_WebShoppingCart(Receipt receipt, DatabaseConnection db){
         this.receipt=receipt;
+        this.db=db;
     }
     
     @Override
@@ -29,10 +33,17 @@ public class PointOfSale_WebShoppingCart implements PointOfSale{
     }
     
     @Override
-    public void addLineItem(String productID, int qty){
+    public void addLineItem(String productID, int qty, DiscountProduct[] discount){
+        Product p = new Product_AnyProduct(productID, db, discount);
+                //db.readData("productsTable", productID);
         
+        receipt.addLineItem(p,qty);
     }
     
+    @Override
+    public void checkOut(){
+        
+    }
     
     
 }

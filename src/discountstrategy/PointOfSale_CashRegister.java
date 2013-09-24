@@ -24,5 +24,10 @@ public class PointOfSale_CashRegister implements PointOfSale{
     public void addLineItem(String productID, int qty) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void checkOut() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
