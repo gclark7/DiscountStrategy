@@ -9,11 +9,11 @@ package discountstrategy;
  * @author gcDataTechnology
  */
 public interface LineItem {
-    public abstract Product[] getLineItem();
+    public abstract Product getLineItem();
     public abstract String[] getProductRecord();
     public abstract void setLineItem(Product product, int qty);//will delegate to Product to return a Product
     public abstract void setItemQuantity(int qty);//need this to adjust during runtime
-    public abstract void removeLineItem(int i);
+    
     public abstract int getItemQuantity();//need this to update displays if qty is adjusted
     
 }

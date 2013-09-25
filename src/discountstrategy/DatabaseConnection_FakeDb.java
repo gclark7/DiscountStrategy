@@ -5,10 +5,16 @@
 package discountstrategy;
 
 /**
- * This is a fake database based upon the DatabaseConnection Class
- * It is designed to simulate the connection, disconnection
+ * This is a fake database based upon the DatabaseConnection Interface 
+ * It is designed to simulate the connection, disconnection of a db
  * It is designed to simulate tables of data for Products & Customers
  * The Products "table" has a relationship with a discountTable to simulate a real database
+ * 
+ * The tables are 2 dimensional arrays based upon several data arrays -- they populate inside the constructor
+ * 
+ * IN THE FUTURE connection to real relational database, data is anticipated to be retrieved through Views in the database
+ * Views are in keeping with flexible, non-fragile, portable design as the 
+ * base tables can be altered without damaging data results & they encapsulate real tables
  * 
  * @author gcDataTechnology
  */
@@ -138,24 +144,35 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
     
     @Override
     public DiscountProduct[] lookUpProductDiscount(String productID){
-        DiscountProduct[] productDiscounts = new DiscountProduct[1];
+        DiscountProduct[] productDiscounts = new DiscountProduct[1];//at least 1 discount - default NoDiscount()
         boolean discountFound=false;
+        int newSize=0;
         if(productID==null){
             throw new UnsupportedOperationException(MSG_ERR_TABLE); //To change body of generated methods, choose Tools | Templates.
         }else{
             
-            for(int i=0;
-                 i< tableProducts.length; i++){
+            for(int i=0;i< tableProducts.length; i++){
                         if(tableProducts[i][INDEX_PRODUCT].equals(productID)){
-                            discountFound=true;
-                            productDiscounts=new DiscountProduct[tableProductDiscounts[i].length];
+                            
                             //fetch discounts
                             for(int d=0;d<tableProductDiscounts[i].length;d++){
-                                //array expansion
-                                productDiscounts[i]=tableProductDiscounts[i][d];
+                                //array expansion :: avoid null values
+                                if(tableProductDiscounts[i][d]!=null){
+                                    discountFound=true;
+                                    newSize++;
+                                    
+                                }
+                            
                             
                             }
+                            //enter discounts
+                            productDiscounts=new DiscountProduct[newSize];
                             
+                            for(int d=0;d<tableProductDiscounts[i].length;d++){
+                                if(tableProductDiscounts[i][d]!=null){
+                                productDiscounts[i]=tableProductDiscounts[i][d];
+                                }
+                            }
                         }
             }if(!discountFound){
                 productDiscounts[0]=new DiscountProduct_NoDiscount();

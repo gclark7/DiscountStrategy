@@ -5,7 +5,12 @@
 package discountstrategy;
 
 /**
- *
+ * This is modeled after simple database connections from PHP & MySQL -- less admin permissions and such
+ * Because arrays are same data type only, readData returns Product information stored in "tables"
+ * lookUpProductDiscount() was developed to retrieve the Product Discount stored in another array "tableProductDiscounts"
+ * 
+ * any number of real methods could be built: timedOut, callStoredProcedure...
+ * 
  * @author gcDataTechnology
  */
 public interface DatabaseConnection {

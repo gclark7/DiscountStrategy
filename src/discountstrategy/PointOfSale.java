@@ -10,7 +10,7 @@ package discountstrategy;
  */
 public interface PointOfSale {
     public abstract void startTransaction(String customerID);
-    public abstract void addLineItem(String productID, int qty, DiscountProduct[] discount);
+    public abstract void addLineItem(String productID, int qty);
     public abstract void checkOut();
     
 }

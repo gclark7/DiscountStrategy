@@ -5,7 +5,10 @@
 package discountstrategy;
 
 /**
- *
+ * In this project the driver simulates user input from a website
+ * To do that it creates the PointOfSale, logs in a user and receives 2 products
+ * The driver then simulates the user clicking "check out" & prints the receipt
+ * 
  * @author gcDataTechnology
  */
 public class DiscountStrategy {
@@ -15,33 +18,34 @@ public class DiscountStrategy {
      */
     public static void main(String[] args) {
         //User input is hard coded to simulate Web Shopping Experience
-        //User output is based upon joption to simulate web prompts & form activity
         //Variables have been created for quick changes to simulation
         
+        //creates the PointOfSale -- Would be a website normally
+        //also connects to db from constructor
         
-        //user logs in or tries to place an item in the shopping cart and so is forced to log in
-        Receipt receipt =new Receipt_WebShoppingCart();
-        DatabaseConnection db = new DatabaseConnection_FakeDb();//also connects to db from constructor
+        PointOfSale shoppingCart = new PointOfSale_WebShoppingCart();//new WebCheckOut();
         
-        PointOfSale shoppingCart = new PointOfSale_WebShoppingCart(receipt,db);//new WebCheckOut();
-        
-        
-        //start shopping
+        //User logs in with credentials
         shoppingCart.startTransaction("User00123");
         
-        DiscountProduct[]  discountProduct = new DiscountProduct[1];
-        discountProduct[0] = new DiscountProduct_Clearance();
+        //User starts shopping -- typically this would be "add item to shoppingCart" buttons
+        shoppingCart.addLineItem("product1", 2);
+        shoppingCart.addLineItem("procuct2", 4);
         
-        //would like to build the deviceInput / deviceOutput to handle this
-        shoppingCart.addLineItem("product1", 2, discountProduct);
-        shoppingCart.addLineItem("procuct2", 4, discountProduct);
+        //user Checks Out
+        shoppingCart.checkOut();
+        
+        
+        
+        
         
         //testing
         //Create a product :: Simulates the user's click on an item image to add to shoppingCart
         
         
-        //Product product=new Product_AnyProduct("product1",db, discountProduct);//Testing
+        //Product product=new Product_AnyProduct("product1",db);//Testing
         
+        //System.out.println(db.lookUpProductDiscount("product1"));
         
        // product.lookUpProductRecordInDatabase("product1");
         

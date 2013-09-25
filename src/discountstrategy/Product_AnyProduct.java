@@ -52,6 +52,7 @@ public class Product_AnyProduct implements Product{
     public void setProductDiscounts(DiscountProduct[] discount){
         for(DiscountProduct d:discount){
             if(d==null){
+                System.out.println("Line55 Product_AnyProduct " + discount);
                 throw new UnsupportedOperationException(MSG_ERR_NULL + discount.getClass());
             }
         }
