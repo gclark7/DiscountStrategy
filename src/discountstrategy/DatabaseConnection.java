@@ -12,6 +12,7 @@ public interface DatabaseConnection {
     
     public abstract void connectToDatabase(String connectionPath, String databaseIdentification);
     public abstract String[] readData(String table, String recordID);
+    public abstract DiscountProduct[] lookUpProductDiscount(String productID);
     public abstract void writeData(String[] data, String table);
     public abstract void disconnectConnection();
     public abstract boolean isConnected();

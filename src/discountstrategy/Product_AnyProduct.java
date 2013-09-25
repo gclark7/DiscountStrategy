@@ -5,7 +5,7 @@
 package discountstrategy;
 
 /**
- *
+ * this class looks up any product
  * @author gcDataTechnology
  */
 public class Product_AnyProduct implements Product{
@@ -17,13 +17,13 @@ public class Product_AnyProduct implements Product{
     private final String PRODUCT_TABLE="tableProducts";
     
     //constructor
-    public Product_AnyProduct(String productID, DatabaseConnection db, DiscountProduct[] discount){
+    public Product_AnyProduct(String productID, DatabaseConnection db){
         //null error handling to be built here
         this.db=db;
         productDiscounts=new DiscountProduct[0];
         productRecord=new String[0];
         setProductRecord(lookUpProductRecordInDatabase(productID));
-        setProductDiscounts(discount);
+        setProductDiscounts(db.lookUpProductDiscount(productID));
     }
     
     @Override
@@ -89,6 +89,8 @@ public class Product_AnyProduct implements Product{
            return db.readData(PRODUCT_TABLE,productID);
        }
     }
+    
+    
     
     
     

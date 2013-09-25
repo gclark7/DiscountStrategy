@@ -24,11 +24,13 @@ public class DiscountStrategy {
         DatabaseConnection db = new DatabaseConnection_FakeDb();//also connects to db from constructor
         
         PointOfSale shoppingCart = new PointOfSale_WebShoppingCart(receipt,db);//new WebCheckOut();
-        DiscountProduct[]  discountProduct = new DiscountProduct[1];
-        discountProduct[0] = new DiscountProduct_Clearance();
+        
         
         //start shopping
         shoppingCart.startTransaction("User00123");
+        
+        DiscountProduct[]  discountProduct = new DiscountProduct[1];
+        discountProduct[0] = new DiscountProduct_Clearance();
         
         //would like to build the deviceInput / deviceOutput to handle this
         shoppingCart.addLineItem("product1", 2, discountProduct);

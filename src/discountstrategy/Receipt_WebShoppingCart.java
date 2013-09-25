@@ -10,7 +10,8 @@ package discountstrategy;
  */
 public class Receipt_WebShoppingCart implements Receipt{
     private final String MSG_ERR_NULL="Null value";
-    private LineItem lineItem;
+    private LineItem[] lineItems;
+    private DatabaseConnection db;
     
     
     public Receipt_WebShoppingCart(){
