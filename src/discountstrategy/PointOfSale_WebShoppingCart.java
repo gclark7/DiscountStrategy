@@ -12,8 +12,8 @@ package discountstrategy;
 
 public class PointOfSale_WebShoppingCart implements PointOfSale{
     private final String MSG_ERR_NULL="NULL Value";
-     Receipt receipt;
-     DatabaseConnection db;
+    private Receipt receipt;
+    private DatabaseConnection db;
      
      
      
@@ -47,7 +47,7 @@ public class PointOfSale_WebShoppingCart implements PointOfSale{
     
     @Override
     public void checkOut(){
-        
+        receipt.printReceipt();
     }
     
     

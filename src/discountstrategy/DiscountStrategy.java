@@ -17,20 +17,19 @@ public class DiscountStrategy {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //User input is hard coded to simulate Web Shopping Experience
-        //Variables have been created for quick changes to simulation
+        //The following code simulates a user shopping on a web page & clicking checkout
+        //User input is hard coded per instruction from Jim - since we do not yet know JFrame & GUI
+       
         
         //creates the PointOfSale -- Would be a website normally
-        //also connects to db from constructor
-        
         PointOfSale shoppingCart = new PointOfSale_WebShoppingCart();//new WebCheckOut();
         
         //User logs in with credentials
-        shoppingCart.startTransaction("User00123");
+        shoppingCart.startTransaction("c014852");
         
         //User starts shopping -- typically this would be "add item to shoppingCart" buttons
         shoppingCart.addLineItem("product1", 2);
-        shoppingCart.addLineItem("procuct2", 4);
+        shoppingCart.addLineItem("product2", 4);
         
         //user Checks Out
         shoppingCart.checkOut();

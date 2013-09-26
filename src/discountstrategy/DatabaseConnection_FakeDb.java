@@ -9,10 +9,11 @@ package discountstrategy;
  * It is designed to simulate the connection, disconnection of a db
  * It is designed to simulate tables of data for Products & Customers
  * The Products "table" has a relationship with a discountTable to simulate a real database
+ * Array indexes are used as primaryKeys & foreignKeys
  * 
  * The tables are 2 dimensional arrays based upon several data arrays -- they populate inside the constructor
  * 
- * IN THE FUTURE connection to real relational database, data is anticipated to be retrieved through Views in the database
+ * IN THE FUTURE a connection to a real relational database is anticipated to retrieved data through Views in the database
  * Views are in keeping with flexible, non-fragile, portable design as the 
  * base tables can be altered without damaging data results & they encapsulate real tables
  * 
@@ -49,6 +50,7 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
     
     
     private DiscountProduct[][] tableProductDiscounts;
+    private final double DISCOUNT_RATE=0.75;
     
     private DiscountSale[] saleDiscounts={new DiscountSale_KohlsCash()};
     
@@ -83,11 +85,11 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
             }
         }//customers
         
-        tableProductDiscounts=new DiscountProduct[r][c];
-        //simulation of linked table to products
-        tableProductDiscounts[0][0]=new DiscountProduct_Clearance();//first product, first discount
-        tableProductDiscounts[1][0]=new DiscountProduct_Clearance();//second product, first discount
-        tableProductDiscounts[2][0]=new DiscountProduct_Clearance();//third product, first discount
+        tableProductDiscounts=new DiscountProduct[r][c];//default array size
+        //simulation of relational link to tableProducts
+        tableProductDiscounts[0][0]=new DiscountProduct_Clearance(DISCOUNT_RATE);//first product, first discount
+        tableProductDiscounts[1][0]=new DiscountProduct_Clearance(DISCOUNT_RATE);//second product, first discount
+        tableProductDiscounts[2][0]=new DiscountProduct_Clearance(DISCOUNT_RATE);//third product, first discount
     }
 
     @Override
@@ -154,7 +156,7 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
             for(int i=0;i< tableProducts.length; i++){
                         if(tableProducts[i][INDEX_PRODUCT].equals(productID)){
                             
-                            //fetch discounts
+                            //fetch discounts:: i is the product table index "primary Key"
                             for(int d=0;d<tableProductDiscounts[i].length;d++){
                                 //array expansion :: avoid null values
                                 if(tableProductDiscounts[i][d]!=null){
@@ -167,10 +169,10 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
                             }
                             //enter discounts
                             productDiscounts=new DiscountProduct[newSize];
-                            
+    //testing                         
                             for(int d=0;d<tableProductDiscounts[i].length;d++){
                                 if(tableProductDiscounts[i][d]!=null){
-                                productDiscounts[i]=tableProductDiscounts[i][d];
+                                productDiscounts[d]=tableProductDiscounts[i][d];
                                 }
                             }
                         }

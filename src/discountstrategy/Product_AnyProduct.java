@@ -10,6 +10,7 @@ package discountstrategy;
  */
 public class Product_AnyProduct implements Product{
     private String MSG_ERR_NULL="NULL";
+    private final int PRICE_INDEX=2;
     
     private DiscountProduct[] productDiscounts;
     private String[] productRecord;
@@ -91,7 +92,12 @@ public class Product_AnyProduct implements Product{
        }
     }
     
-    
+    @Override
+    public double getProductPrice(){
+       
+        return Double.parseDouble(productRecord[PRICE_INDEX]);
+        
+    }
     
     
     

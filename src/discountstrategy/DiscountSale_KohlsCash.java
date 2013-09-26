@@ -14,5 +14,10 @@ public class DiscountSale_KohlsCash implements DiscountSale{
     public double reducePrice(double amountToDiscount, double discountRate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public double reducePrice(double amountToDiscount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

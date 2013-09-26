@@ -15,4 +15,9 @@ public class DiscountProduct_NoDiscount implements DiscountProduct{
          return 0;
     }
     
+    @Override
+    public double reducePrice(double amountToDiscount){
+        return 0;
+    }
+    
 }

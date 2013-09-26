@@ -17,5 +17,6 @@ public interface Product {
     public abstract String[] lookUpProductRecordInDatabase(String productID);
     public abstract void setProductRecord(String[] recordDetails);//pulls from database
     public abstract void updateDatabaseRecord();//intended to take the current Product Object settings & write it to database
+    public abstract double getProductPrice();
     
 }
