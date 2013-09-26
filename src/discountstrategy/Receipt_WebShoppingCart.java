@@ -84,7 +84,7 @@ public class Receipt_WebShoppingCart implements Receipt{
              System.out.println("");
              
              for(int j=0;j<i.getProductRecord().length;j++){
-                  itemPrice=i.getLineItem().getProductPrice();
+                  itemPrice=i.getLineItemCost();
                   subTotal+=itemPrice;
                   
                   System.out.print(i.getProductRecord()[j] + "\t");

@@ -81,6 +81,11 @@ public class LineItem_GenericLineItem implements LineItem{
     }
    
     */
+
+    @Override
+    public double getLineItemCost() {
+        return product.getProductPrice()*productQty;
+    }
     
    
     

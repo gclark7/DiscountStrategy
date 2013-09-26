@@ -15,5 +15,6 @@ public interface LineItem {
     public abstract void setItemQuantity(int qty);//need this to adjust during runtime
     
     public abstract int getItemQuantity();//need this to update displays if qty is adjusted
+    public abstract double getLineItemCost();
     
 }
