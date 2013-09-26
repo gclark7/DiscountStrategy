@@ -19,12 +19,12 @@ public class Receipt_WebShoppingCart implements Receipt{
     private LineItem[] lineItems;
     private DatabaseConnection db;
     private Customer customer;
-    
+    private Tax taxRate;
     
     public Receipt_WebShoppingCart(){
         
         lineItems=new LineItem[0];
-        
+        taxRate=new Tax_WI();
                 
     }
     
@@ -76,6 +76,7 @@ public class Receipt_WebShoppingCart implements Receipt{
         double subTotal=0.00;
         double savings=0.00;
         double itemPrice=0.00;
+        double tax=0.00;
         
         
          for(LineItem i:lineItems){
@@ -97,9 +98,12 @@ public class Receipt_WebShoppingCart implements Receipt{
                   }
          }
          System.out.println("\n\t" + MSG_SAVINGS + savings);
-         System.out.println("\n\t\t" + MSG_SUBTOTAL + savings);
-         System.out.println("\n\t\t" + MSG_TAX + savings);
-         System.out.println("\t" + MSG_GRANDTOTAL + (subTotal-savings) + "\n\n");
+         System.out.println("\n\t\t" + MSG_SUBTOTAL + (subTotal-savings));
+         
+         tax=taxRate.taxTheSale((subTotal-savings));
+         
+         System.out.println("\t\t" + MSG_TAX + tax);
+         System.out.println("\t" + MSG_GRANDTOTAL + ((subTotal-savings)+tax) + "\n\n");
              
     }
     
