@@ -25,9 +25,12 @@ public class Customer_RegisteredCustomer implements Customer{
     @Override
     public void accessCustomerAccount(String customerID) {//considered placing password here as well
            
-        if(!isCustomer(customerID)){//error handling is in isCustomer()
+        //if(!isCustomer(customerID)){//error handling is in isCustomer()
+        if(customerID==null||customerID.length()==0){
             throw new UnsupportedOperationException(MSG_ERR_USER); //To change body of generated methods, choose Tools | Templates.
         }else{
+            //TESTING
+            System.out.println("At setCustomerRecord CustomerRegisteredClass");
             setCustomerRecord(db.readData(DATA_TABLE, customerID));
         }
         

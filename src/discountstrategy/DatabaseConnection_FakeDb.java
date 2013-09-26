@@ -114,7 +114,7 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
                 case "tableProducts": 
                     for(int i=0; i< tableProducts.length; i++){
                         if(tableProducts[i][INDEX_PRODUCT].equals(recordID)){
-                            //System.out.println(tableProducts[i][INDEX_PRODUCT].equals(recordID));testing product match
+                            //System.out.println(tableProducts[i][INDEX_PRODUCT].equals(recordID));//testing product match
                             
                             tableData[INDEX_PRODUCT]= tableProducts[i][INDEX_PRODUCT];
                             tableData[INDEX_DESCRIPTON]= tableProducts[i][INDEX_DESCRIPTON];
@@ -122,7 +122,18 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
                         }
                     }
                     break;
-                case "tableCustomer": break;
+                case "tableCustomers":
+                    
+                    for(int i=0; i< tableCustomers.length; i++){
+                        if(tableCustomers[i][INDEX_ID].equals(recordID)){
+                            System.out.println(tableCustomers[i][INDEX_ID].equals(recordID));//testing customer match
+                            
+                            tableData[INDEX_ID]= tableCustomers[i][INDEX_ID];
+                            tableData[INDEX_FNAME]= tableCustomers[i][INDEX_FNAME];
+                            tableData[INDEX_LNAME]= tableCustomers[i][INDEX_LNAME];
+                        }
+                    }
+                    break;
                 default : throw new UnsupportedOperationException(MSG_ERR_TABLE); //To change body of generated methods, choose Tools | Templates.
             }
         }

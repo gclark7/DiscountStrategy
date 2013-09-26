@@ -18,13 +18,17 @@ public class Receipt_WebShoppingCart implements Receipt{
     private LineItem expandLineItems;//used inside addLineItem() to expand array of LineItems
     private LineItem[] lineItems;
     private DatabaseConnection db;
-    private Customer customer;
+    private Customer customer;;
+    private final String TABLE_CUSTOMER="tableCustomers";
     private Tax taxRate;
     
-    public Receipt_WebShoppingCart(){
+    public Receipt_WebShoppingCart(DatabaseConnection db){
         
         lineItems=new LineItem[0];
         taxRate=new Tax_WI();
+        customer=new Customer_AnonymousCustomer();
+        this.db=db;
+        
                 
     }
     
@@ -105,6 +109,12 @@ public class Receipt_WebShoppingCart implements Receipt{
          System.out.println("\t\t" + MSG_TAX + tax);
          System.out.println("\t" + MSG_GRANDTOTAL + ((subTotal-savings)+tax) + "\n\n");
              
+    }
+
+    
+    @Override
+    public void setCustomer(String customerID){
+       customer=new Customer_RegisteredCustomer(customerID, db);
     }
     
 }

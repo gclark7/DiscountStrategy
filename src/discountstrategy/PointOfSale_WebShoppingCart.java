@@ -23,16 +23,17 @@ public class PointOfSale_WebShoppingCart implements PointOfSale{
     }
     
     public PointOfSale_WebShoppingCart(){
-        receipt =new Receipt_WebShoppingCart();
         db = new DatabaseConnection_FakeDb();
+        receipt =new Receipt_WebShoppingCart(db);
+        
     }
     
     @Override
     public void startTransaction(String customerID) {
-        if(customerID==null){
+        if(customerID==null||customerID.length()==0){
             throw new UnsupportedOperationException(MSG_ERR_NULL + customerID.getClass()); //To change body of generated methods, choose Tools | Templates.
         }else{
-          
+          receipt.setCustomer(customerID);
         }
         
     }

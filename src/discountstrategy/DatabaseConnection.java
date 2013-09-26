@@ -21,4 +21,5 @@ public interface DatabaseConnection {
     public abstract void writeData(String[] data, String table);
     public abstract void disconnectConnection();
     public abstract boolean isConnected();
+    
 }
