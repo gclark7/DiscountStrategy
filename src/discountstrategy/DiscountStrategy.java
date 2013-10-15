@@ -37,6 +37,10 @@ public class DiscountStrategy {
         //The following code simulates a user shopping on a web page & clicking checkout
         //User input is hard coded per instruction from Jim - since we do not yet know JFrame & GUI
        
+        //10/15/2013 Adding lab work Factory
+        ProductFactory pf = ProductFactory.getProductFactoryInstance();
+        
+        
         
         //creates the PointOfSale -- Would be a website normally
         PointOfSale shoppingCart = new PointOfSale_WebShoppingCart();//new WebCheckOut();
@@ -47,6 +51,7 @@ public class DiscountStrategy {
         //User starts shopping -- typically this would be "add item to shoppingCart" buttons
         shoppingCart.addLineItem("PRODUCT1", 2);
         shoppingCart.addLineItem("PRODUCT2", 4);
+       
         
         //user Checks Out
         shoppingCart.checkOut();
