@@ -31,7 +31,7 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
     private int r=3;
     private int c=3;
     private int c1=7;
-    private String[] products = {"product1","product2","product3"};
+    private String[] products = {"PRODUCT1","PRODUCT2","PRODUCT3"};
     private String[] productDescriptions={"dress","pants","shirt"};
     private String[] productPrice={"100.00", "30.75", "45.34"};
     

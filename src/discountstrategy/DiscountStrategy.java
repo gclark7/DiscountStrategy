@@ -45,8 +45,8 @@ public class DiscountStrategy {
         shoppingCart.startTransaction("c014852");
         
         //User starts shopping -- typically this would be "add item to shoppingCart" buttons
-        shoppingCart.addLineItem("product1", 2);
-        shoppingCart.addLineItem("product2", 4);
+        shoppingCart.addLineItem("PRODUCT1", 2);
+        shoppingCart.addLineItem("PRODUCT2", 4);
         
         //user Checks Out
         shoppingCart.checkOut();

@@ -11,12 +11,22 @@ package discountstrategy;
 public class Receipt_CashRegister implements Receipt{
 
     @Override
-    public void removeLineItem(LineItem lineItem) {
+    public void setCustomer(String customerID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void addLineItem() {
+    public void removeLineItem(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addLineItem(Product product, int qty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String timeStamp() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -24,5 +34,6 @@ public class Receipt_CashRegister implements Receipt{
     public void printReceipt() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }
