@@ -6,6 +6,10 @@ package discountstrategy;
 
 /**
  *
+ * The line item interface is provided to ensure extension and flexibility in the future
+ * I cannot think of another type of line item that could be used, however I did want 
+ * to avoid issues in the future if one ever needed to be added
+ * 
  * @author gcDataTechnology
  */
 public interface LineItem {

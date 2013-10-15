@@ -4,6 +4,9 @@
  */
 package discountstrategy;
 
+import org.joda.time.DateTime;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author gcDataTechnology
@@ -15,6 +18,8 @@ public class Receipt_WebShoppingCart implements Receipt{
     private final String MSG_SUBTOTAL="total: ";
     private final String MSG_TAX="tax: ";
     private final String MSG_GRANDTOTAL="Grand Total: ";
+    private final String MSG_SHIPTO="Ship To:\n";
+    private final String TIME_FORMAT_STRING="M/d/yy hh:mm a";
     private LineItem expandLineItems;//used inside addLineItem() to expand array of LineItems
     private LineItem[] lineItems;
     private DatabaseConnection db;
@@ -82,6 +87,7 @@ public class Receipt_WebShoppingCart implements Receipt{
         double itemPrice=0.00;
         double tax=0.00;
         
+        System.out.println(this.timeStamp());
         
          for(LineItem i:lineItems){
              //lineItem details --> delegates to Product to return record data
@@ -106,9 +112,11 @@ public class Receipt_WebShoppingCart implements Receipt{
          
          tax=taxRate.taxTheSale((subTotal-savings));
          
+         //System.out.println(timeStamp());
          System.out.println("\t\t" + MSG_TAX + tax);
          System.out.println("\t" + MSG_GRANDTOTAL + ((subTotal-savings)+tax) + "\n\n");
-             
+         System.out.println(MSG_SHIPTO);
+         System.out.println(customer.getCustomerShippingInformation());
     }
 
     
@@ -117,4 +125,23 @@ public class Receipt_WebShoppingCart implements Receipt{
        customer=new Customer_RegisteredCustomer(customerID, db);
     }
     
+    //teting time functionalilty here...This is only a test method 10/10/2013
+    public void firstDateTimeFunctionTEST(){
+        
+         DateTime dt = new DateTime();
+          int month = dt.getMonthOfYear();
+    }
+    
+    @Override
+    public String timeStamp(){
+        DateTime dt = new DateTime();
+        SimpleDateFormat f= new SimpleDateFormat(TIME_FORMAT_STRING);
+        String a="";
+        if(dt.getHourOfDay()>=12){
+            a="PM";
+        }else{a="AM";}
+        
+        return dt.getMonthOfYear()+"/"+dt.getDayOfMonth()+"/"+dt.getYear()+" " + dt.getHourOfDay()+":"+
+                dt.getMinuteOfHour()+ " " + a;
+    }
 }

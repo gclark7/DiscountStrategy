@@ -5,7 +5,11 @@
 package discountstrategy;
 
 /**
- *
+ * This is the generic line item...It's purpose is to provide line item details
+ * to the receipt.
+ * 
+ * It is the only line item I can think to need, however there is opportunity to create others if necessary
+ * Because this class is built upon abstraction, another line item will not break the receipt
  * @author gcDataTechnology
  */
 public class LineItem_GenericLineItem implements LineItem{
@@ -18,16 +22,34 @@ public class LineItem_GenericLineItem implements LineItem{
         setLineItem(product, qty);
     }
     
+    /**
+     * 
+     * returns the Product 
+     * @return 
+     */
     @Override 
     public Product getLineItem(){
         return product;
     }
     
+    /**
+     * 
+     * Delegates to the Product to return product details
+     * 
+     * @return 
+     */
     @Override
     public String[] getProductRecord() {
        return product.getProductRecord();
     }
-
+    
+    /**
+     * 
+     * sets the private variables product and productQty
+     * 
+     * @param product
+     * @param qty 
+     */
     @Override
     public void setLineItem(Product product, int qty) {//delegate to Product to return a Product
          if(product==null || qty<=0){
@@ -36,31 +58,18 @@ public class LineItem_GenericLineItem implements LineItem{
              
              this.product=product;
              productQty=qty;
-            //run the array expander
-             //product
-        /*//Originally had this as an array, Receipt now has LineItem[]
-        int indexStart=0;
-        int newSize=this.products.length + 1;
-        Product[] temp = new Product[newSize];
-        int elementIndex = temp.length-1;
-        System.arraycopy(this.products, indexStart, temp, indexStart, elementIndex);
-        temp[elementIndex]= product;
-        this.products=temp;
-        
-        //qty
-        newSize=this.productQtys.length + 1;
-        int[] tempQ = new int[newSize];
-        elementIndex = temp.length-1;
-        System.arraycopy(this.productQtys, indexStart, tempQ, indexStart, elementIndex);
-        tempQ[elementIndex]=qty;
-        this.productQtys=tempQ;
-        */
+            
              
         }
         
         
     }
-
+    
+    /***
+     * 
+     * public setter for quantity
+     * @param qty 
+     */
     @Override
     public void setItemQuantity(int qty) {
         if(qty<=0){
@@ -68,20 +77,22 @@ public class LineItem_GenericLineItem implements LineItem{
         }else{productQty=qty;}
         
     }
-
+    /**
+     * 
+     * returns the quantity for associated product
+     * @return 
+     */
     @Override
     public int getItemQuantity() {
         return productQty;
     }
 
-   /*//moved to receipt LineItem[ ]
-    @Override
-    public void removeLineItem(int i){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
-    */
-
+  /**
+   * 
+   * delegates to the Product to retrieve its cost
+   * returns  calculated cost according to quantity
+   * @return 
+   */
     @Override
     public double getLineItemCost() {
         return product.getProductPrice()*productQty;

@@ -5,7 +5,7 @@
 package discountstrategy;
 
 /**
- *
+ * Not built in this application, but available to show flexibility
  * @author gcDataTechnology
  */
 public class Customer_AnonymousCustomer implements Customer{
@@ -28,6 +28,16 @@ public class Customer_AnonymousCustomer implements Customer{
     @Override
     public String[] getCustomerRecord() {
         return record;
+    }
+
+    @Override
+    public String getCustomerName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getCustomerShippingInformation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

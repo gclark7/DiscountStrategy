@@ -6,6 +6,11 @@ package discountstrategy;
 
 /**
  *
+ * This class is used to show LSP and DIP 
+ * it is designed to allow for no discount on a product.  During class
+ * Jim L had stated we need to have 1 discount for each product, which could be no discount
+ * This can be substituted for active product discounts and not damage any functionality
+ * 
  * @author gcDataTechnology
  */
 public class DiscountProduct_NoDiscount implements DiscountProduct{

@@ -30,6 +30,7 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
     //per Jim we can hard code these in to simulate a database
     private int r=3;
     private int c=3;
+    private int c1=7;
     private String[] products = {"product1","product2","product3"};
     private String[] productDescriptions={"dress","pants","shirt"};
     private String[] productPrice={"100.00", "30.75", "45.34"};
@@ -42,18 +43,44 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
     private String[] customerID={"c014852","c014855","c014322"};
     private String[] customerFName={"Jim","Jane","John"};
     private String[] customerLName={"Jones","Jackson","Jeeves"};
+    private String[] customerAddress={"123 Burleigh Street","327 Blackville Street","5289 Coutyard Court"};
+    private String[] customerCity={"Waukesha","Milwaukee","Greenbay"};
+    private String[] customerState={"WI","WI","WI"};
+    private String[] customerZip={"53205","53214","53650"};
     
     private String[][] tableCustomers;
     private final int INDEX_ID=0;
     private final int INDEX_FNAME=1;
     private final int INDEX_LNAME=2;
+    private final int INDEX_ADDRESS=3;
+    private final int INDEX_CITY=4;
+    private final int INDEX_STATE=5;
+    private final int INDEX_ZIP=6;
     
-    
+    /**
+     * Discounts and discount rates are simulated in the database where they would be
+     * updated by accounting personnel / sales strategist
+     * Products are independent of their discounts, however they are linked to them through data relationships
+     * 
+     * Requirements for this project are the products have 1 discount - I have met that requirement and 
+     * allowed for expansion in the future
+     * 
+     * Also I've added sale discounts that can be added to in the future - these are anticipated to reduce 
+     * the entire cost of the sale, not the product cost
+     */
     private DiscountProduct[][] tableProductDiscounts;
     private final double DISCOUNT_RATE=0.75;
     
     private DiscountSale[] saleDiscounts={new DiscountSale_KohlsCash()};
     
+    /**
+     * 
+     * Class constructor
+     * simulates a connection to a database less admin permissions
+     * The necessary tables are simulated through multi-dimensional arrays which are populated here
+     * 
+     * 
+     */
     public DatabaseConnection_FakeDb(){
         connectToDatabase(connectionPath,dbID);
         tableProducts=new String[r][c];
@@ -72,15 +99,20 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
             }
         }//products
         
-        tableCustomers=new String[r][c];
+        tableCustomers=new String[r][c1];
         for(int i=0;i<r;i++){
             //outer record by record
-            for(int j=0;j<c;j++){
+            for(int j=0;j<c1;j++){
                 //populate columns
                 switch(j){
                     case INDEX_ID:tableCustomers[i][j]=customerID[i];break;
                     case INDEX_FNAME:tableCustomers[i][j]=customerFName[i];break;
                     case INDEX_LNAME:tableCustomers[i][j]=customerLName[i];break;
+                    case INDEX_ADDRESS:tableCustomers[i][j]=customerAddress[i];break;
+                    case INDEX_CITY:tableCustomers[i][j]=customerCity[i];break;
+                    case INDEX_STATE:tableCustomers[i][j]=customerState[i];break;
+                    case INDEX_ZIP:tableCustomers[i][j]=customerZip[i];break;
+                    
                 }
             }
         }//customers
@@ -91,7 +123,12 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
         tableProductDiscounts[1][0]=new DiscountProduct_Clearance(DISCOUNT_RATE);//second product, first discount
         tableProductDiscounts[2][0]=new DiscountProduct_Clearance(DISCOUNT_RATE);//third product, first discount
     }
-
+    
+    /**
+     * Called from the constructor to establish connection
+     * @param connectionPath
+     * @param databaseIdentification 
+     */
     @Override
     public void connectToDatabase(String connectionPath, String databaseIdentification) {
         if(connectionPath==null || databaseIdentification==null){
@@ -100,10 +137,19 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
             System.out.println(MSG_CONNECTION_SUCCESS);
         }
     }
-
+    
+    /**
+     * 
+     * Simulates reading data from tables in a database
+     * This simulation takes the table and the primary key to return entire record
+     * 
+     * @param table
+     * @param recordID
+     * @return 
+     */
     @Override
     public String[] readData(String table, String recordID) {
-        String[] tableData= new String[c];
+        String[] tableData;
         
         
         if(table==null || recordID==null){
@@ -112,9 +158,10 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
             
             switch(table){
                 case "tableProducts": 
+                    tableData= new String[c];
                     for(int i=0; i< tableProducts.length; i++){
                         if(tableProducts[i][INDEX_PRODUCT].equals(recordID)){
-                            //System.out.println(tableProducts[i][INDEX_PRODUCT].equals(recordID));//testing product match
+                            
                             
                             tableData[INDEX_PRODUCT]= tableProducts[i][INDEX_PRODUCT];
                             tableData[INDEX_DESCRIPTON]= tableProducts[i][INDEX_DESCRIPTON];
@@ -123,14 +170,18 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
                     }
                     break;
                 case "tableCustomers":
-                    
+                    tableData= new String[c1];
                     for(int i=0; i< tableCustomers.length; i++){
                         if(tableCustomers[i][INDEX_ID].equals(recordID)){
-                            System.out.println(tableCustomers[i][INDEX_ID].equals(recordID));//testing customer match
                             
                             tableData[INDEX_ID]= tableCustomers[i][INDEX_ID];
                             tableData[INDEX_FNAME]= tableCustomers[i][INDEX_FNAME];
                             tableData[INDEX_LNAME]= tableCustomers[i][INDEX_LNAME];
+                            tableData[INDEX_ADDRESS]= tableCustomers[i][INDEX_ADDRESS];
+                            tableData[INDEX_CITY]= tableCustomers[i][INDEX_CITY];
+                            tableData[INDEX_STATE]= tableCustomers[i][INDEX_STATE];
+                            tableData[INDEX_ZIP]= tableCustomers[i][INDEX_ZIP];
+                            
                         }
                     }
                     break;
@@ -139,22 +190,52 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
         }
         return tableData;
     }
-
+    
+    /**
+     * 
+     * not created yet
+     * to be used by real database connection
+     * @param data
+     * @param table 
+     */
     @Override
     public void writeData(String[] data, String table) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+     /**
+     * 
+     * not created yet
+     * to be used by real database connection
+     * @param data
+     * @param table 
+     */
     @Override
     public void disconnectConnection() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+     /**
+     * 
+     * not created yet
+     * to be used by real database connection
+     * @param data
+     * @param table 
+     */
     @Override
     public boolean isConnected() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+     /**
+     * 
+     * simulates the lookUP tables for a product discount
+     * where a product record would be linked to a discount table
+     * this simulates a stored procedure in the database
+     * 
+     * @param data
+     * @param table 
+     */
     @Override
     public DiscountProduct[] lookUpProductDiscount(String productID){
         DiscountProduct[] productDiscounts = new DiscountProduct[1];//at least 1 discount - default NoDiscount()
@@ -180,7 +261,7 @@ public class DatabaseConnection_FakeDb implements DatabaseConnection{
                             }
                             //enter discounts
                             productDiscounts=new DiscountProduct[newSize];
-    //testing                         
+                          
                             for(int d=0;d<tableProductDiscounts[i].length;d++){
                                 if(tableProductDiscounts[i][d]!=null){
                                 productDiscounts[d]=tableProductDiscounts[i][d];

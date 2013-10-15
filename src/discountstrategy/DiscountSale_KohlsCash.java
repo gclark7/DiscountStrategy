@@ -5,7 +5,8 @@
 package discountstrategy;
 
 /**
- *
+ * Not built at this time, but provided for expansion in the future
+ * 
  * @author gcDataTechnology
  */
 public class DiscountSale_KohlsCash implements DiscountSale{
