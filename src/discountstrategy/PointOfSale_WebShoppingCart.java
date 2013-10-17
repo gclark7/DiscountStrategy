@@ -40,8 +40,17 @@ public class PointOfSale_WebShoppingCart implements PointOfSale{
     
     @Override
     public void addLineItem(String productID, int qty){
-        Product p = new Product_AnyProduct(productID, db);
-                //db.readData("productsTable", productID);
+         //original product creation commented out 10/17/2013
+        //Product p = new Product_AnyProduct(productID, db);
+        
+        Product p;//added 10/17/2013
+        //10/15/2013 Adding lab work Factory
+        ProductFactory pf = ProductFactory.getProductFactoryInstance();
+        p=pf.createProduct(productID, db);//added 10/17/2013
+        
+       
+        
+         //NOT NEEDED ***NEVER USED IN ORIGINAL APP       //db.readData("productsTable", productID);
         
         receipt.addLineItem(p,qty);
     }

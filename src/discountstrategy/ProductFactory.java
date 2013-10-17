@@ -12,7 +12,7 @@ public class ProductFactory {
     
     private static ProductFactory pFactoryInstance;
     
-    public static enum InventoryItems{PRODUCT1,PRODUCT2,PRODUCT3}
+    //public static enum InventoryItems{PRODUCT1,PRODUCT2,PRODUCT3}
     
     public static ProductFactory getProductFactoryInstance(){
         if(pFactoryInstance==null){
@@ -28,9 +28,9 @@ public class ProductFactory {
         
     }
     
-    public Product_AnyProduct createProduct(InventoryItems item, DatabaseConnection db){
+    public Product_AnyProduct createProduct(String productID, DatabaseConnection db){
         
-        return new Product_AnyProduct(item.name(),db);
+        return new Product_AnyProduct(productID,db);
     }
     
 }

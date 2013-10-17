@@ -6,6 +6,7 @@ package discountstrategy;
 
 import org.joda.time.DateTime;
 import java.text.SimpleDateFormat;
+import java.util.Calendar.*;
 
 /**
  *
@@ -134,6 +135,7 @@ public class Receipt_WebShoppingCart implements Receipt{
     
     @Override
     public String timeStamp(){
+        //Calendar cal;
         DateTime dt = new DateTime();
         SimpleDateFormat f= new SimpleDateFormat(TIME_FORMAT_STRING);
         String a="";
