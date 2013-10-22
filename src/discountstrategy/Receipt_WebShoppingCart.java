@@ -146,4 +146,7 @@ public class Receipt_WebShoppingCart implements Receipt{
         return dt.getMonthOfYear()+"/"+dt.getDayOfMonth()+"/"+dt.getYear()+" " + dt.getHourOfDay()+":"+
                 dt.getMinuteOfHour()+ " " + a;
     }
+    
+    
+    
 }

@@ -72,5 +72,10 @@ public class DiscountStrategy {
         
        // product.lookUpProductRecordInDatabase("product1");
         
+        
+        
+        //testing class data types and theories
+        
+        
     }//close main
 }//close strategy
